@@ -7,3 +7,7 @@ export function getOneById(id){
     const productList = json.products;
     productList.find({id:id})
 }
+
+export function guardar(product){
+    getAllProducts().push(product)
+}

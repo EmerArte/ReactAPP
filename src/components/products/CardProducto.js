@@ -1,17 +1,48 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
+
 export function CardProducto(prop) {
+  const oldPrice = Math.round(
+    prop.producto.price +
+      prop.producto.price * (prop.producto.discountPercentage / 100)
+  );
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={prop.producto.thumbnail} />
-      <Card.Body>
-        <Card.Title>{prop.producto.title}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <div className="col-md-12 col-lg-4 mb-4 mb-lg-0 my-2">
+      <div className="py-2 h-100 border rounded">
+        <img
+          src={prop.producto.images[0]}
+          className="img-fluid mx-auto d-block"
+          alt={prop.producto.category}
+          style={{ minHeight: "350px", maxHeight: "350px", objectFit: "cover" }}
+        />
+        <div className="p-2">
+          <div className="d-flex justify-content-between">
+            <p className="small">
+              <a href="#!" className="text-muted">
+                {prop.producto.category}
+              </a>
+            </p>
+            <p className="small text-danger">
+              <s>${oldPrice}</s>
+            </p>
+          </div>
+
+          <div className="d-flex justify-content-between mb-3">
+            <h5 className="mb-0">{prop.producto.title}</h5>
+            <h5 className="text-dark mb-0">${prop.producto.price}</h5>
+          </div>
+
+          <div className="d-flex justify-content-between mb-2">
+            <p className="text-muted mb-0">
+              Available: <span className="fw-bold">{prop.producto.stock}</span>
+            </p>
+          </div>
+          <div className="d-grid gap-2">
+            <Button variant="success" size="md">
+              Añadir al carrito
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
