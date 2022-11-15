@@ -1,4 +1,7 @@
 import { Button } from "react-bootstrap";
+import * as ShopCar from "../../services/ClientService"
+
+
 
 export function CardProducto(prop) {
   const oldPrice = Math.round(
@@ -37,7 +40,10 @@ export function CardProducto(prop) {
             </p>
           </div>
           <div className="d-grid gap-2">
-            <Button variant="success" size="md">
+            <Button variant="success" size="md" onClick={()=>{
+              ShopCar.selectProducts(prop.producto)
+            }
+              }>
               Añadir al carrito
             </Button>
           </div>

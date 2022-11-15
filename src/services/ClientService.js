@@ -1,7 +1,7 @@
 import json from "./products.json";
 
 
-let arrayProductSelect;
+let arrayProductSelect = [];
 
 export function listProductAvailable(products) {
     products.forEach((value, index,) => {
@@ -14,6 +14,8 @@ export function listProductAvailable(products) {
 
 export function selectProducts(product) {
     arrayProductSelect.push(product);
+    console.log(arrayProductSelect)
+
 }
 
 export function checkout() {
@@ -28,3 +30,4 @@ export function checkout() {
     console.log(totalValue)
 }
 
+export default arrayProductSelect;
