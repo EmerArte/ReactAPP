@@ -8,21 +8,29 @@ import { getAllProducts } from "./services/ProductsService";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { CardProducto } from "./components/products/CardProducto";
-
+import {ProductList} from "./components/admin/ProductList";
+import {AddProduct} from "./components/admin/AddProduct";
+import {ReportSale} from "./components/admin/ReportSale";
+import salesJson from "../src/services/sales.json";
 const productList = getAllProducts();
 export const Context = React.createContext([]);
 export var ShopContext = React.createContext([]);
+export var SalesContext = React.createContext(salesJson.sales);
+
 function App() {
   return (
     <Context.Provider value={productList}>
       <div className="App">
-        <MyNavBar src={logo}></MyNavBar>
+        <MyNavBar src={logo} isAdmin={true} ></MyNavBar>
         <Routes>
           <Route
             path="/"
             element={<ProductoListComponent></ProductoListComponent>}
           ></Route>
           <Route path="/shopping" element={<ShopCar></ShopCar>}></Route>
+          <Route path="/productsAdmin" element={<ProductList></ProductList>}></Route>
+          <Route path="/addProduct" element={<AddProduct></AddProduct>}></Route>
+          <Route path="/reportSale" element={<ReportSale></ReportSale>}></Route>
         </Routes>
       </div>
     </Context.Provider>

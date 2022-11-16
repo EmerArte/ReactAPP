@@ -4,7 +4,7 @@ import { Nav } from "react-bootstrap";
 import ClientItems from "./ClientItems";
 import AdminItems from "./AdminItems";
 import { Link } from "react-router-dom";
-function BasicExample(logo, isAdmin) {
+function BasicExample(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -12,7 +12,7 @@ function BasicExample(logo, isAdmin) {
           <Navbar.Brand>
             <img
               alt=""
-              src={logo.src}
+              src={props.src}
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -26,7 +26,8 @@ function BasicExample(logo, isAdmin) {
           style={{ maxHeight: "100px" }}
           navbarScroll
         >
-          {isAdmin === true ? (
+          console.log(props)
+          {props.isAdmin=== true ? (
             <AdminItems></AdminItems>
           ) : (
             <ClientItems></ClientItems>

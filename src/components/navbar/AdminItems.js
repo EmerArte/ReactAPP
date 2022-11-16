@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 function AdminItems() {
     return(
         <>
-        <Link className="nav-link">Lista productos</Link>
-        <Link className="nav-link">Modificar productos</Link>
-        <Link className="nav-link">Lista ventas</Link>
+        <Link to="/productsAdmin" className="nav-link">Lista productos</Link>
+        <Link to={"/addProduct"} className="nav-link">Agregar producto</Link>
+        <Link to={"/reportSale"} className="nav-link">Lista ventas</Link>
         </>
 
     )

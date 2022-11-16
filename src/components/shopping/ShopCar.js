@@ -41,7 +41,7 @@ export function ShopCar() {
       <h3 className="fs-6 fst-italic w-25 text-end">${total}</h3>
       </div>
       <div className="d-flex flex-row-reverse my-3">
-        <Button onClick={()=>{Checkout(carritoCompra,productos)}} disabled={carritoCompra.length > 0 ? false : true} >CheckOut</Button>
+        <Button onClick={()=>{Checkout(carritoCompra,productos)}} disabled={carritoCompra.length <= 0} >CheckOut</Button>
       </div>
     </Container>
   );
