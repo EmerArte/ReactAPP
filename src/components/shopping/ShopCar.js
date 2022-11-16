@@ -1,34 +1,38 @@
-import { Table } from "react-bootstrap";
-export function ShopCar(props){
-    return (
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </Table>
-      );
+import { Container, Table } from "react-bootstrap";
+import { ShopContext } from "../../App";
+import React, { useContext } from "react";
+export function ShopCar(props) {
+  const carritoCompra = useContext(ShopContext);
+  return (
+    <Container className="my-3">
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            carritoCompra.map((producto)=>{
+              return (
+              <tr key={producto.id}>
+                <td><img src={producto.images[0]}
+                     className="img-fluid mx-auto d-block"
+                     alt={producto.category}
+                     style={{ minHeight: "100px", maxHeight: "100px", objectFit: "cover" }}/></td>
+                <td>{producto.title}</td>
+                <td>${producto.price}</td>
+                <td>{producto.cantidad}</td>
+                <td>{producto.price * producto.cantidad}</td>
+              </tr>)
+            })
+          }
+        </tbody>
+      </Table>
+    </Container>
+  );
 }

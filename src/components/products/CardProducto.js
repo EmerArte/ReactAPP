@@ -1,13 +1,14 @@
 import { Button } from "react-bootstrap";
-import * as ShopCar from "../../services/ClientService"
-
-
+import { ShopContext } from "../../App";
+import React, {useContext} from "react";
 
 export function CardProducto(prop) {
   const oldPrice = Math.round(
     prop.producto.price +
       prop.producto.price * (prop.producto.discountPercentage / 100)
   );
+  var shop = useContext(ShopContext);
+
   return (
     <div className="col-md-12 col-lg-4 mb-4 mb-lg-0 my-2">
       <div className="py-2 h-100 border rounded">
@@ -41,7 +42,21 @@ export function CardProducto(prop) {
           </div>
           <div className="d-grid gap-2">
             <Button variant="success" size="md" onClick={()=>{
-              ShopCar.selectProducts(prop.producto)
+              if(shop.length > 0){
+                const existe = shop.findIndex((value)=>{
+                  return value.id === prop.producto.id
+                });
+                if(existe !== -1){
+                  shop[existe].cantidad +=1;
+                }else{
+                  prop.producto.cantidad = 1;
+                  shop.push(prop.producto);
+                }
+              }else{
+                prop.producto.cantidad = 1;
+                shop.push(prop.producto)
+              }
+              console.log(shop)
             }
               }>
               Añadir al carrito
